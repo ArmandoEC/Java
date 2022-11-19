@@ -1,0 +1,9 @@
+package entites.enume;
+
+public enum OrderStatus { //DECLARANDO O ENUM COM OS STATUS DO PEDIDO
+	PENDENTE_PAGAMENTO,
+	PROCESSANDO,
+	SEPARADO,
+	ENTREGUE;
+	
+}

@@ -1,0 +1,36 @@
+package entities;
+
+public class BusinessAccount extends Account{//criando uma herança da superclasse que recebe todos os atributos e métodos
+	
+	private Double loanLimit;
+	
+	public BusinessAccount() {
+		
+	}
+
+	public BusinessAccount(Integer number, String holder, Double balance, Double loanLimit) {//construtor da subclasse com o construtor da superclasse
+		super(number, holder, balance);
+		this.loanLimit = loanLimit;
+	}
+
+	public Double getLoanLimit() {
+		return loanLimit;
+	}
+
+	public void setLoanLimit(Double loanLimit) {
+		this.loanLimit = loanLimit;
+	}
+	
+	public void loan(double amount) { //acessando um atributo protected balance da super classe
+		if(amount <= loanLimit) {
+			balance += amount -10.0;
+		}
+	}
+	
+	@Override
+	public void withDraw(Double amount) {
+		super.withDraw(amount); //invocando o método de saque da superclasse
+		balance -= 2.0; //taxa adicional de saque
+	}
+	
+}
