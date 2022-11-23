@@ -1,6 +1,9 @@
 package application;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,8 +50,22 @@ public class Program {
 			System.out.println("Error: "+e.getMessage());
 		}
 		
+		new File (strPath+"\\out").mkdir();
+		
+		List<Produto> lerProdutos = new ArrayList<>();
 		
 		
+		try(BufferedReader br = new BufferedReader(new FileReader(strPath+"\\Source.csv"))) {
+			while(br.readLine()!=null) {
+				String leitura = br.readLine();
+				String 
+			}
+			
+		}
+		
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 		
 		
 		
