@@ -53,5 +53,9 @@ public class Produto {
 		return nome+","+String.format("%.2f", valor)+","+quantidade;
 	}
 	
+	public String summary() {
+		return nome+","+quantidade*valor;
+	}
+	
 	
 }

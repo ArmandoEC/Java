@@ -40,7 +40,9 @@ public class Program {
 			produtos.add(new Produto(nome, valor, quantidade));
 		}
 		
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(strPath))){
+	
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(strPath+"\\Source.csv"))){
 			for(Produto e: produtos) {
 				bw.write(e.toString(),0,e.toString().length());
 				bw.newLine();
@@ -50,19 +52,30 @@ public class Program {
 			System.out.println("Error: "+e.getMessage());
 		}
 		
-		new File (strPath+"\\out").mkdir();
-		
 		List<Produto> lerProdutos = new ArrayList<>();
 		
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(strPath+"\\Source.csv"))) {
-			while(br.readLine()!=null) {
-				String leitura = br.readLine();
-				String 
+			for(int i =0; i<n; i++) {
+				String[] leitura = br.readLine().split(",");
+				lerProdutos.add(new Produto(leitura[0],Double.parseDouble( leitura[1]),Integer.parseInt(leitura[2])));
+				
 			}
 			
+		}		
+		catch(IOException e) {
+			e.printStackTrace();
 		}
 		
+		new File (strPath+"\\out").mkdir();
+		
+		
+		try (BufferedWriter bw1 = new BufferedWriter(new FileWriter(strPath+"\\out\\summary.csv"))){
+			for(Produto e: lerProdutos) {
+				bw1.write(e.summary());
+				bw1.newLine();
+			}
+		}
 		catch(IOException e) {
 			e.printStackTrace();
 		}
