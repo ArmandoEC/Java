@@ -60,7 +60,7 @@ public class Pessoa {
 	}
 	
 	public void salvarPessoa(String dados) {
-		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\TestePedidosMVCFiles\\Pessoa.txt";
+		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";
 		
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathPessoa,true))){
 			bw.write(dados);
@@ -71,4 +71,5 @@ public class Pessoa {
 			System.out.println("Não foi possivel salvar a pessoa. "+ e.getMessage());
 		}
 	}
+
 }

@@ -25,6 +25,8 @@ public class Program {
 		
 		List<Produto> produtos = new ArrayList<>();
 		
+		
+		
 		System.out.print("Digite a quantidade de produtos: ");
 		int n = sc.nextInt();
 		for(int i = 0; i<n; i++) {

@@ -1,12 +1,14 @@
 package model.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import model_enum.PessoaStatus;
 
 public class PessoaFisica extends Pessoa{
 	private String cpf;
 	
+	DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public PessoaFisica(String nome, int id, LocalDate dtCadastro, LocalDate dtUltCompra,PessoaStatus status ,String cpf) {
 		super(nome, id, dtCadastro, dtUltCompra, status);
@@ -23,7 +25,7 @@ public class PessoaFisica extends Pessoa{
 
 	@Override
 	public String toString() {
-		return getId() + "," + getNome() + "," + cpf + "," +  getDtCadastro()+ "," + getDtUltCompra() + ","+ getPessoaStatus();
+		return getId() + "," + getNome() + "," + cpf + "," +  getDtCadastro().format(fmt1)+ "," + getDtUltCompra() + ","+ getPessoaStatus();
 	}
 	
 	
