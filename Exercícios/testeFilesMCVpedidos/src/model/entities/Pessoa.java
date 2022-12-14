@@ -11,11 +11,11 @@ public class Pessoa {
 	private String nome;
 	private int id;
 	private LocalDate dtCadastro;
-	private LocalDate dtUltCompra;
+	private String dtUltCompra;
 	
 	private PessoaStatus pessoaStatus;
 	
-	public Pessoa(String nome, int id, LocalDate dtCadastro, LocalDate dtUltCompra,PessoaStatus status) {
+	public Pessoa(String nome, int id, LocalDate dtCadastro, String dtUltCompra,PessoaStatus status) {
 		this.nome = nome;
 		this.id = id;
 		this.dtCadastro = dtCadastro;
@@ -39,11 +39,11 @@ public class Pessoa {
 		this.dtCadastro = dtCadastro;
 	}
 
-	public LocalDate getDtUltCompra() {
+	public String getDtUltCompra() {
 		return dtUltCompra;
 	}
 
-	public void setDtUltCompra(LocalDate dtUltCompra) {
+	public void setDtUltCompra(String dtUltCompra) {
 		this.dtUltCompra = dtUltCompra;
 	}
 
@@ -62,7 +62,7 @@ public class Pessoa {
 	public void salvarPessoa(String dados) {
 		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";
 		
-		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathPessoa,true))){
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathPessoa))){
 			bw.write(dados);
 			bw.newLine();
 			System.out.println("Pessoa salva com sucesso!!!");

@@ -10,7 +10,7 @@ public class PessoaFisica extends Pessoa{
 	
 	DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	public PessoaFisica(String nome, int id, LocalDate dtCadastro, LocalDate dtUltCompra,PessoaStatus status ,String cpf) {
+	public PessoaFisica(String nome, int id, LocalDate dtCadastro, String dtUltCompra,PessoaStatus status ,String cpf) {
 		super(nome, id, dtCadastro, dtUltCompra, status);
 		this.cpf = cpf;
 	}

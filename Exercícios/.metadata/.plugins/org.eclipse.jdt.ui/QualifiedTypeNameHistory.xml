@@ -26,4 +26,5 @@
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="model.entities.PessoaFisica"/>
     <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+    <fullyQualifiedTypeName name="model.entities.Produto"/>
 </qualifiedTypeNameHistroy>

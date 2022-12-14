@@ -1,5 +1,9 @@
 package model.entities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Produto {
 	private int id;
 	private String nome;
@@ -30,7 +34,24 @@ public class Produto {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return id +","+ nome + "," + valor;
+	}
 	
+	public void salvarProduto(String dados) {
+		String pathProduto = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Produto.txt";
+		
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathProduto))){
+			bw.write(dados);
+			bw.newLine();
+			System.out.println("Produto salvo com sucesso!!!");
+		}
+		catch(IOException e) {
+			System.out.println("Não foi possivel salvar a pessoa. "+ e.getMessage());
+		}
+	}
 	
 
 }
