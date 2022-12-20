@@ -28,6 +28,17 @@ public class PessoaFisica extends Pessoa{
 		return getId() + "," + getNome() + "," + cpf + "," +  getDtCadastro().format(fmt1)+ "," + getDtUltCompra() + ","+ getPessoaStatus();
 	}
 	
+	@Override
+	public String imprimir() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("ID: "+getId());
+		sb.append(" / Status: "+getPessoaStatus());
+		sb.append(" / Nome: "+getNome());
+		sb.append(" / CNPJ: "+getCpf());
+		sb.append(" / DtCadastro: "+getDtCadastro().format(fmt1));
+		sb.append(" / DtUltCompra: "+getDtUltCompra());
+		return sb.toString();
+	}
 	
 
 }

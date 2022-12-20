@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import model_enum.PessoaStatus;
 
@@ -14,6 +15,8 @@ public class Pessoa {
 	private String dtUltCompra;
 	
 	private PessoaStatus pessoaStatus;
+	
+	DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	public Pessoa(String nome, int id, LocalDate dtCadastro, String dtUltCompra,PessoaStatus status) {
 		this.nome = nome;
@@ -54,10 +57,22 @@ public class Pessoa {
 	public PessoaStatus getPessoaStatus() {
 		return pessoaStatus;
 	}
+	
 
 	public void setPessoaStatus(PessoaStatus pessoaStatus) {
 		this.pessoaStatus = pessoaStatus;
 	}
+	
+	public String imprimir() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("ID: "+getId());
+		sb.append(" - Status: "+getPessoaStatus());
+		sb.append(" - Nome: "+getNome());
+		sb.append(" - DtCadastro: "+getDtCadastro().format(fmt1));
+		sb.append(" - DtUltCompra: "+getDtUltCompra());
+		return sb.toString();
+	}
+
 	
 	public void salvarPessoa(String dados) {
 		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";

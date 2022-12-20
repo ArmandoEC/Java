@@ -28,8 +28,10 @@ public class Program {
 		List<Produto> produtos = new ArrayList <> ();
 		
 		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";
+		String pathProduto = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Produto.txt";
 		
 		lerPessoas(pathPessoa,pessoas);
+		lerProdutos(pathProduto, produtos);
 		
 		 
 		int menu = 1;
@@ -38,7 +40,7 @@ public class Program {
 			System.out.println("-------------MENU---------------");
 			System.out.println("1 - Cadatrar pessoa");
 			System.out.println("2 - Cadastrar produto");
-			System.out.println("3 - ");
+			System.out.println("3 - Ativar/Inativar pessoa");
 			System.out.println("4 - ");
 			System.out.println("5 - ");
 			System.out.println("6 - ");
@@ -46,16 +48,16 @@ public class Program {
 			System.out.println("8 - ");
 			System.out.println("9 - ");
 			System.out.println("10 - ");
-			System.out.println("1 - ");
+			System.out.println("11 - ");
 			System.out.println("0 - sair");
 			System.out.println("Digite uma opção do menu: ");
 			menu = sc.nextInt();
-			
+			int existe = 0;
 			switch(menu) {
+				
 				case 1:
 					System.out.println("Digite o id da pessoa");
 					int id = sc.nextInt();
-					int existe = 0;
 						for(Pessoa e: pessoas) {
 							if(e.getId()==id) {
 								System.out.println("Id já existente");
@@ -116,13 +118,41 @@ public class Program {
 						}
 					}
 				break;
+				
+				case 3:
+					for(Pessoa e: pessoas) {
+						System.out.println(e.imprimir());
+					}
+					
+					System.out.println("Digite um ID para trocar o status: ");
+					int opcao = sc.nextInt();
+					
+					for(Pessoa e: pessoas) {
+						if(e.getId()==opcao) {
+							existe = 1;
+						}
+					}
+					
+					if(existe == 1) {
+						for(Pessoa e: pessoas) {
+							if(e.getId()==opcao) {
+								if(e.getPessoaStatus() == PessoaStatus.valueOf("ATIVO")) {
+									e.setPessoaStatus(PessoaStatus.valueOf("INATIVO"));
+								}
+								else {
+									e.setPessoaStatus(PessoaStatus.valueOf("ATIVO"));
+								}
+							}
+						}
+						System.out.println("Status Alterado com sucesso!");
+					}
+					else {
+						System.out.println("ID Inexistente");
+					}
+				
+				break;
 			}
 		}
-		
-		
-		
-		
-		
 		
 		
 		
@@ -157,6 +187,24 @@ public class Program {
 		}
 		catch(NullPointerException e) {
 			System.out.println("Não foi possivel ler os dados de pessoa. "+ e.getMessage());
+		}
+	}
+	
+	public static void lerProdutos(String pathProdutos,List<Produto> produtos) {
+		try(BufferedReader br = new BufferedReader(new FileReader(pathProdutos))){
+			
+			String receber = br.readLine();
+			while(receber!=null) {
+				String[] leitura = receber.split(",");
+				produtos.add(new Produto(Integer.parseInt(leitura[0]), leitura[1],Double.parseDouble( leitura[2])));
+				receber = br.readLine();
+			}
+		}
+		catch(IOException e) {
+			System.out.println("Não foi possivel ler os dados dos produtos. "+ e.getMessage());
+		}
+		catch(NullPointerException e) {
+			System.out.println("Não foi possivel ler os dados dos produtos. "+ e.getMessage());
 		}
 	}
 }
