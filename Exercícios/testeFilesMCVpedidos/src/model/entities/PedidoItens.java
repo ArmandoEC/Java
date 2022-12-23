@@ -6,15 +6,14 @@ import java.util.List;
 public class PedidoItens {
 	private double valor;
 	private int quantidade;
-	
-	private Pedido idPedido;
+	private int idPedido;
 	private List<Produto> produtos = new ArrayList<>();
 	
-	public PedidoItens(double valor, int quantidade, Pedido idPedido, List<Produto> produtos) {
+	public PedidoItens(double valor, int quantidade, int idPedido, Produto produtos) {
 		this.valor = valor;
 		this.quantidade = quantidade;
 		this.idPedido = idPedido;
-		this.produtos = produtos;
+		this.addItem(produtos);
 	}
 
 	public double getValor() {
@@ -33,7 +32,7 @@ public class PedidoItens {
 		this.quantidade = quantidade;
 	}
 
-	public Pedido getIdPedido() {
+	public int getIdPedido() {
 		return idPedido;
 	}
 

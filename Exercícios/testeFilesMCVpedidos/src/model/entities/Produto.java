@@ -54,4 +54,14 @@ public class Produto {
 	}
 	
 
+	public String imprimir() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("ID: "+id);
+		sb.append(" / Nome: "+nome);
+		sb.append(" / Valor: "+valor);
+
+		return sb.toString();
+	}
+	
+
 }

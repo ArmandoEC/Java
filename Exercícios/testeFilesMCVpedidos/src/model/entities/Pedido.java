@@ -1,6 +1,8 @@
 package model.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import model_enum.PedidoStatus;
 
@@ -8,10 +10,11 @@ public class Pedido {
 	private int id;
 	private LocalDateTime dtEmissao;
 	
-	private Pessoa idPessoa;
+	private int idPessoa;
 	private PedidoStatus pedidoStatus;
+	
 
-	public Pedido(int id, LocalDateTime dtEmissao, Pessoa idPessoa,PedidoStatus pedidoStatus) {
+	public Pedido(int id, LocalDateTime dtEmissao, int idPessoa,PedidoStatus pedidoStatus) {
 		this.id = id;
 		this.dtEmissao = dtEmissao;
 		this.idPessoa = idPessoa;
@@ -34,11 +37,11 @@ public class Pedido {
 		this.dtEmissao = dtEmissao;
 	}
 
-	public Pessoa getIdPessoa() {
+	public int getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setIdPessoa(Pessoa idPessoa) {
+	public void setIdPessoa(int idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 

@@ -4,16 +4,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import model.entities.Pedido;
+import model.entities.PedidoItens;
 import model.entities.Pessoa;
 import model.entities.PessoaFisica;
 import model.entities.PessoaJuridica;
 import model.entities.Produto;
+import model_enum.PedidoStatus;
 import model_enum.PessoaStatus;
 
 public class Program {
@@ -26,6 +30,8 @@ public class Program {
 			
 		List<Pessoa> pessoas = new ArrayList <> ();
 		List<Produto> produtos = new ArrayList <> ();
+		List<Pedido> pedidos = new ArrayList <> ();
+		List<PedidoItens> pedidoItens = new ArrayList <> ();
 		
 		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";
 		String pathProduto = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Produto.txt";
@@ -33,7 +39,7 @@ public class Program {
 		lerPessoas(pathPessoa,pessoas);
 		lerProdutos(pathProduto, produtos);
 		
-		 
+
 		int menu = 1;
 		
 		while(menu != 0) {
@@ -41,9 +47,9 @@ public class Program {
 			System.out.println("1 - Cadatrar pessoa");
 			System.out.println("2 - Cadastrar produto");
 			System.out.println("3 - Ativar/Inativar pessoa");
-			System.out.println("4 - ");
-			System.out.println("5 - ");
-			System.out.println("6 - ");
+			System.out.println("4 - Listar pessoas");
+			System.out.println("5 - Listar produtos");
+			System.out.println("6 - Novo Pedido");
 			System.out.println("7 - ");
 			System.out.println("8 - ");
 			System.out.println("9 - ");
@@ -53,6 +59,7 @@ public class Program {
 			System.out.println("Digite uma opção do menu: ");
 			menu = sc.nextInt();
 			int existe = 0;
+			int opcao = 0;
 			switch(menu) {
 				
 				case 1:
@@ -125,17 +132,17 @@ public class Program {
 					}
 					
 					System.out.println("Digite um ID para trocar o status: ");
-					int opcao = sc.nextInt();
+					int idPessoa = sc.nextInt();
 					
 					for(Pessoa e: pessoas) {
-						if(e.getId()==opcao) {
+						if(e.getId()==idPessoa) {
 							existe = 1;
 						}
 					}
 					
 					if(existe == 1) {
 						for(Pessoa e: pessoas) {
-							if(e.getId()==opcao) {
+							if(e.getId()==idPessoa) {
 								if(e.getPessoaStatus() == PessoaStatus.valueOf("ATIVO")) {
 									e.setPessoaStatus(PessoaStatus.valueOf("INATIVO"));
 								}
@@ -148,6 +155,138 @@ public class Program {
 					}
 					else {
 						System.out.println("ID Inexistente");
+					}
+				
+				break;
+				
+				case 4:
+					System.out.println("Pessoas Ativas:");
+					
+					for(Pessoa e: pessoas) {
+						if(e.getPessoaStatus() == PessoaStatus.valueOf("ATIVO")) {
+							System.out.println(e.imprimir());
+						}
+						
+					}
+					
+					System.out.println("\nPessoas Inativas:");
+					
+					for(Pessoa e: pessoas) {
+						if(e.getPessoaStatus() == PessoaStatus.valueOf("INATIVO")) {
+							System.out.println(e.imprimir());
+						}
+						
+					}
+					
+					
+				break;
+				
+				case 5:
+					System.out.println("Produtos:");
+					
+					for(Produto e: produtos) {
+						System.out.println(e.imprimir());
+					}
+			
+					
+				break;
+				
+				case 6:
+					if(pessoas == null || produtos == null) {
+						System.out.println("Não existem dados suficientes para fazer um pedido!");
+					}
+					else {
+						existe = 0;
+						
+						System.out.println("Digite o id do pedido: ");
+						int idPedido = sc.nextInt();
+						
+						for(Pedido e : pedidos) {
+							if(e.getId() == idPedido) {
+								existe =1;
+							}
+						}
+						
+						if(existe == 1) {
+							System.out.println("ID já existente!");
+						}
+						
+						else {
+						
+							for(Pessoa e: pessoas) {
+								if(e.getPessoaStatus() == PessoaStatus.valueOf("ATIVO")) {
+									System.out.println(e.imprimir());
+								}
+							}
+							
+							System.out.println("\nDigite o id do cliente: ");
+							int idCliente = sc.nextInt();
+							
+							existe = 0;
+							for(Pessoa e: pessoas) {
+								if(e.getId()==idCliente) {
+									existe = 1;
+								}
+							}
+							
+							if(existe == 1) {
+								opcao = 1;
+								
+								while(opcao !=0) {
+									existe = 0;
+									Produto produto = null;
+									for(Produto e: produtos) {
+										System.out.println(e.imprimir());
+									}
+									
+									System.out.println("\nDigite o ID do produto ou 0 para sair");
+									int idProduto = sc.nextInt();
+									
+									for(Produto e: produtos) {
+										if(e.getId() == idProduto) {
+											existe = 1;
+										}
+									}
+						
+									if(existe == 1) {
+										System.out.println("Digite a quantidade do produto: ");
+										int quantidade = sc.nextInt();
+										
+										if(quantidade <0) {
+											System.out.println("Quantidade não pode ser menor ou igual a zero!");
+										}
+										
+										else {
+											try {
+												double vlProduto = 0;
+												for(Produto e: produtos) {
+													if(e.getId() == idProduto) {
+														vlProduto = e.getValor();
+														produto = e;
+													}
+												}
+												
+												pedidoItens.add(new PedidoItens(vlProduto, quantidade,idPedido,produto));
+												pedidos.add(new Pedido(idPedido, LocalDateTime.now(), idCliente, PedidoStatus.valueOf("PENDENTE")));
+											}
+											catch(NullPointerException e) {
+												System.out.println("Você não escolheu um produto! "+e.getMessage());
+											}
+										}
+									}
+									else {
+										System.out.println("ID de produto inexistente");
+									}
+									
+									
+								}
+							}
+							else {
+								System.out.println("ID do cliente não existe!");
+							}
+							//pedidos.add(new Pedido(idPedido, LocalDateTime.now(), idCliente, null))
+							
+						}
 					}
 				
 				break;
