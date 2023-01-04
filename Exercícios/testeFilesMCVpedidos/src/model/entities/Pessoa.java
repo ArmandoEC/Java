@@ -80,10 +80,9 @@ public class Pessoa {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathPessoa))){
 			bw.write(dados);
 			bw.newLine();
-			System.out.println("Pessoa salva com sucesso!!!");
 		}
 		catch(IOException e) {
-			System.out.println("Não foi possivel salvar a pessoa. "+ e.getMessage());
+			System.out.println("Não foi possivel salvar a pessoa. "+"ID: "+id+" "+ e.getMessage());
 		}
 	}
 

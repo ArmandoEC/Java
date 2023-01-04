@@ -35,10 +35,13 @@ public class Program {
 		
 		String pathPessoa = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pessoa.txt";
 		String pathProduto = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Produto.txt";
+		String pathPedido = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\Pedido.txt";
+		String pathPedidoItem = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\PedidoItem.txt";
 		
 		lerPessoas(pathPessoa,pessoas);
 		lerProdutos(pathProduto, produtos);
-		
+		lerPedidos(pathPedido, pedidos);
+		lerPedidosItens(pathPedidoItem, pedidoItens);
 
 		int menu = 1;
 		
@@ -89,13 +92,6 @@ public class Program {
 							String cnpj = sc.next();
 							pessoas.add(new PessoaJuridica(nome, id, LocalDate.now(), null, PessoaStatus.valueOf("ATIVO"), cnpj));
 						}
-						
-						for(Pessoa e: pessoas) {
-							if(e.getId()==id) {
-								e.salvarPessoa(e.toString());
-							}
-						}
-						
 					}
 				break;
 				
@@ -117,12 +113,6 @@ public class Program {
 						double valor = sc.nextDouble();
 						
 						produtos.add(new Produto(idProd, nomeProd, valor));
-						
-						for(Produto e: produtos) {
-							if(e.getId()==idProd) {
-								e.salvarProduto(e.toString());
-							}
-						}
 					}
 				break;
 				
@@ -234,7 +224,7 @@ public class Program {
 								
 								while(opcao !=0) {
 									existe = 0;
-									Produto produto = null;
+									
 									for(Produto e: produtos) {
 										System.out.println(e.imprimir());
 									}
@@ -262,11 +252,10 @@ public class Program {
 												for(Produto e: produtos) {
 													if(e.getId() == idProduto) {
 														vlProduto = e.getValor();
-														produto = e;
 													}
 												}
 												
-												pedidoItens.add(new PedidoItens(vlProduto, quantidade,idPedido,produto));
+												pedidoItens.add(new PedidoItens(vlProduto, quantidade,idPedido,idProduto));
 												pedidos.add(new Pedido(idPedido, LocalDateTime.now(), idCliente, PedidoStatus.valueOf("PENDENTE")));
 											}
 											catch(NullPointerException e) {
@@ -284,7 +273,8 @@ public class Program {
 							else {
 								System.out.println("ID do cliente não existe!");
 							}
-							//pedidos.add(new Pedido(idPedido, LocalDateTime.now(), idCliente, null))
+
+							
 							
 						}
 					}
@@ -294,9 +284,22 @@ public class Program {
 		}
 		
 		
-		
-		
-		
+		System.out.println("Atualizando pessoas.........");
+		for(Pessoa e: pessoas) {
+				e.salvarPessoa(e.toString());
+		}
+		System.out.println("Atualizando produtos.........");
+		for(Produto e: produtos) {
+				e.salvarProduto(e.toString());
+		}
+		System.out.println("Atualizando pedidos.........");
+		for(Pedido e: pedidos) {
+				e.salvarPedido(e.toString());
+		}
+		System.out.println("Atualizando PedidoItens.........");
+		for(PedidoItens e: pedidoItens) {
+				e.salvarPedidoItens(e.toString());
+		}
 		
 		sc.close();
 
@@ -344,6 +347,45 @@ public class Program {
 		}
 		catch(NullPointerException e) {
 			System.out.println("Não foi possivel ler os dados dos produtos. "+ e.getMessage());
+		}
+	}
+	
+	public static void lerPedidos(String pathPedidos,List<Pedido> pedidos) {
+		DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy mm:HH:ss");
+		
+		try(BufferedReader br = new BufferedReader(new FileReader(pathPedidos))){
+			
+			String receber = br.readLine();
+			while(receber!=null) {
+				String[] leitura = receber.split(",");
+				pedidos.add(new Pedido(Integer.parseInt(leitura[0]), LocalDateTime.parse(leitura[1],fmt1), Integer.parseInt(leitura[2]), PedidoStatus.valueOf(leitura[3])));
+				receber = br.readLine();
+			}
+		}
+		catch(IOException e) {
+			System.out.println("Não foi possivel ler os dados dos pedidos. "+ e.getMessage());
+		}
+		catch(NullPointerException e) {
+			System.out.println("Não foi possivel ler os dados dos pedidos. "+ e.getMessage());
+		}
+	}
+	
+	public static void lerPedidosItens(String pathPedidos,List<PedidoItens> pedidoItens) {
+		
+		try(BufferedReader br = new BufferedReader(new FileReader(pathPedidos))){
+			
+			String receber = br.readLine();
+			while(receber!=null) {
+				String[] leitura = receber.split(",");
+				pedidoItens.add(new PedidoItens(Double.parseDouble(leitura[0]), Integer.parseInt(leitura[1]), Integer.parseInt(leitura[2]), Integer.parseInt(leitura[3])));
+				receber = br.readLine();
+			}
+		}
+		catch(IOException e) {
+			System.out.println("Não foi possivel ler os dados dos Itens dos pedidos. "+ e.getMessage());
+		}
+		catch(NullPointerException e) {
+			System.out.println("Não foi possivel ler os dados dos Itens dos pedidos. "+ e.getMessage());
 		}
 	}
 }

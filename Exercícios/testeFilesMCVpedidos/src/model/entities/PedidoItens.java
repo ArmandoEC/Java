@@ -1,5 +1,8 @@
 package model.entities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +10,13 @@ public class PedidoItens {
 	private double valor;
 	private int quantidade;
 	private int idPedido;
-	private List<Produto> produtos = new ArrayList<>();
+	private int idProduto;
 	
-	public PedidoItens(double valor, int quantidade, int idPedido, Produto produtos) {
+	public PedidoItens(double valor, int quantidade, int idPedido, int idProduto) {
 		this.valor = valor;
 		this.quantidade = quantidade;
 		this.idPedido = idPedido;
-		this.addItem(produtos);
+		this.idProduto = idProduto;
 	}
 
 	public double getValor() {
@@ -35,16 +38,30 @@ public class PedidoItens {
 	public int getIdPedido() {
 		return idPedido;
 	}
+	
+	public int getIdProduto() {
+		return idProduto;
+	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public void setIdProduto(int idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	@Override
+	public String toString() {
+		return valor+","+quantidade+","+idPedido+","+idProduto;
 	}
 	
-	public void addItem(Produto e) {
-		produtos.add(e);
-	}
-	
-	public void removerItem(Produto e) {
-		produtos.remove(e);
+	public void salvarPedidoItens(String dados) {
+		String pathPedidoItens = "C:\\Users\\pc\\Documents\\workSpace\\Exercícios\\testeFilesMCVpedidos\\TestePedidosMVCFiles\\PedidoItem.txt";
+		
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathPedidoItens))){
+			bw.write(dados);
+			bw.newLine();
+			System.out.println("ProdutoItem salvo com sucesso!!!");
+		}
+		catch(IOException e) {
+			System.out.println("Não foi possivel salvar ProdutoItem. "+ e.getMessage());
+		}
 	}
 }

@@ -49,7 +49,7 @@ public class Produto {
 			System.out.println("Produto salvo com sucesso!!!");
 		}
 		catch(IOException e) {
-			System.out.println("Não foi possivel salvar a pessoa. "+ e.getMessage());
+			System.out.println("Não foi possivel salvar o produto. "+ e.getMessage());
 		}
 	}
 	

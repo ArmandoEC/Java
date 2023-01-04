@@ -26,9 +26,9 @@
     <fullyQualifiedTypeName name="model_enum.PessoaStatus"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="model.entities.Produto"/>
-    <fullyQualifiedTypeName name="model.entities.PedidoItens"/>
     <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
-    <fullyQualifiedTypeName name="model.entities.Pedido"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="model_enum.PedidoStatus"/>
+    <fullyQualifiedTypeName name="model.entities.Pedido"/>
+    <fullyQualifiedTypeName name="model.entities.PedidoItens"/>
 </qualifiedTypeNameHistroy>
