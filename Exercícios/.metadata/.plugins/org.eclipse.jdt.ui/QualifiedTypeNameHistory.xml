@@ -13,8 +13,6 @@
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
     <fullyQualifiedTypeName name="models.entities.Produto"/>
-    <fullyQualifiedTypeName name="java.util.Locale"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="model.service.SalvarPessoa"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -31,4 +29,9 @@
     <fullyQualifiedTypeName name="model_enum.PedidoStatus"/>
     <fullyQualifiedTypeName name="model.entities.Pedido"/>
     <fullyQualifiedTypeName name="model.entities.PedidoItens"/>
+    <fullyQualifiedTypeName name="java.util.Locale"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="model.entities.Projeto"/>
+    <fullyQualifiedTypeName name="model.entities.Cliente"/>
+    <fullyQualifiedTypeName name="model.entities.Implantador"/>
 </qualifiedTypeNameHistroy>
