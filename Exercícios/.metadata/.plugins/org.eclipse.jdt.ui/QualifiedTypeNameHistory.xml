@@ -13,11 +13,9 @@
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
     <fullyQualifiedTypeName name="models.entities.Produto"/>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="model.service.SalvarPessoa"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="model.entities.Pessoa"/>
-    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="java.time.format.DateTimeFormatterBuilder"/>
     <fullyQualifiedTypeName name="model.entities.PessoaFisica"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
@@ -29,9 +27,14 @@
     <fullyQualifiedTypeName name="model_enum.PedidoStatus"/>
     <fullyQualifiedTypeName name="model.entities.Pedido"/>
     <fullyQualifiedTypeName name="model.entities.PedidoItens"/>
-    <fullyQualifiedTypeName name="java.util.Locale"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="model.entities.Projeto"/>
     <fullyQualifiedTypeName name="model.entities.Cliente"/>
     <fullyQualifiedTypeName name="model.entities.Implantador"/>
+    <fullyQualifiedTypeName name="model.services.OnlinePaymentService"/>
+    <fullyQualifiedTypeName name="java.util.Locale"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="model.entities.Contract"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="model.entities.Installment"/>
 </qualifiedTypeNameHistroy>
